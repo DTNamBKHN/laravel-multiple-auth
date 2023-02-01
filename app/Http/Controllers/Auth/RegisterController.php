@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\Admin;
-use App\Writer;
 use App\Http\Controllers\Controller;
+use App\Professor;
+use App\Student;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -40,8 +40,8 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->middleware('guest:admin');
-        $this->middleware('guest:writer');
+        $this->middleware('guest:professor');
+        $this->middleware('guest:student');
     }
 
     /**
@@ -62,17 +62,17 @@ class RegisterController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showAdminRegisterForm()
+    public function showProfessorRegisterForm()
     {
-        return view('auth.register', ['url' => 'admin']);
+        return view('auth.register', ['url' => 'professor']);
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showWriterRegisterForm()
+    public function showStudentRegisterForm()
     {
-        return view('auth.register', ['url' => 'writer']);
+        return view('auth.register', ['url' => 'student']);
     }
 
     /**
@@ -94,15 +94,15 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function createAdmin(Request $request)
+    protected function createProfessor(Request $request)
     {
         $this->validator($request->all())->validate();
-        Admin::create([
+        Professor::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        return redirect()->intended('login/admin');
+        return redirect()->intended('login/professor');
     }
 
     /**
@@ -110,14 +110,14 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function createWriter(Request $request)
+    protected function createStudent(Request $request)
     {
         $this->validator($request->all())->validate();
-        Writer::create([
+        Student::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        return redirect()->intended('login/writer');
+        return redirect()->intended('login/student');
     }
 }

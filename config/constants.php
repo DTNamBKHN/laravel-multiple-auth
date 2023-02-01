@@ -1,8 +1,8 @@
 <?php
     return [
         'guards'=> [
-            'admin' => 'admin',
-            'writer' => 'writer'
+            'professor' => 'professor',
+            'student' => 'student'
         ]
 
     ];

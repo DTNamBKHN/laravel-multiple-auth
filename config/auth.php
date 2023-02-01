@@ -46,14 +46,14 @@ return [
             'provider' => 'users',
         ],
 
-        'admin' => [
+        'professor' => [
             'driver' => 'session',
-            'provider' => 'admins',
+            'provider' => 'professors',
         ],
         
-        'writer' => [
+        'student' => [
             'driver' => 'session',
-            'provider' => 'writers',
+            'provider' => 'students',
         ],
     ],
 
@@ -80,14 +80,14 @@ return [
             'model' => App\User::class,
         ],
 
-        'admins' => [
+        'professors' => [
             'driver' => 'eloquent',
-            'model' => App\Admin::class,
+            'model' => App\Professor::class,
         ],
 
-        'writers' => [
+        'students' => [
             'driver' => 'eloquent',
-            'model' => App\Writer::class,
+            'model' => App\Student::class,
         ],
 
         // 'users' => [
@@ -118,14 +118,14 @@ return [
             'expire' => 60,
         ],
 
-        'admins' => [
-            'provider' => 'admins',
+        'professors' => [
+            'provider' => 'professors',
             'table' => 'password_resets',
             'expire' => 60,
         ],
         
-        'writers' => [
-            'provider' => 'writers',
+        'students' => [
+            'provider' => 'students',
             'table' => 'password_resets',
             'expire' => 60,
         ],

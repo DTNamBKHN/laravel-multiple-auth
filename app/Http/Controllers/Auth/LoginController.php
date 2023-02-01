@@ -38,27 +38,27 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->middleware('guest:admin')->except('logout');
-        $this->middleware('guest:writer')->except('logout');
+        $this->middleware('guest:professor')->except('logout');
+        $this->middleware('guest:student')->except('logout');
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showAdminLoginForm()
+    public function showProfessorLoginForm()
     {
         return view('auth.login', [
-            'url' => Config::get('constants.guards.admin')
+            'url' => Config::get('constants.guards.professor')
         ]);
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showWriterLoginForm()
+    public function showStudentLoginForm()
     {
         return view('auth.login', [
-            'url' => Config::get('constants.guards.writer')
+            'url' => Config::get('constants.guards.student')
         ]);
     }
 
@@ -97,10 +97,10 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function adminLogin(Request $request)
+    public function professorLogin(Request $request)
     {
-        if ($this->guardLogin($request, Config::get('constants.guards.admin'))) {
-            return redirect()->intended('/admin');
+        if ($this->guardLogin($request, Config::get('constants.guards.professor'))) {
+            return redirect()->intended('/professor');
         }
 
         return back()->withInput($request->only('email', 'remember'));
@@ -113,10 +113,10 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function writerLogin(Request $request)
+    public function studentLogin(Request $request)
     {
-        if ($this->guardLogin($request,Config::get('constants.guards.writer'))) {
-            return redirect()->intended('/writer');
+        if ($this->guardLogin($request,Config::get('constants.guards.student'))) {
+            return redirect()->intended('/student');
         }
 
         return back()->withInput($request->only('email', 'remember'));

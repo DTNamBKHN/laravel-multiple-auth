@@ -2,21 +2,21 @@
 Route::view('/', 'welcome');
 Auth::routes();
 
-Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm')->name('login.admin');
-Route::get('/login/writer', 'Auth\LoginController@showWriterLoginForm')->name('login.writer');
-Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm')->name('register.admin');
-Route::get('/register/writer', 'Auth\RegisterController@showWriterRegisterForm')->name('register.writer');
+Route::get('/login/professor', 'Auth\LoginController@showProfessorLoginForm')->name('login.professor');
+Route::get('/login/student', 'Auth\LoginController@showStudentLoginForm')->name('login.student');
+Route::get('/register/professor', 'Auth\RegisterController@showProfessorRegisterForm')->name('register.professor');
+Route::get('/register/student', 'Auth\RegisterController@showStudentRegisterForm')->name('register.student');
 
-Route::post('/login/admin', 'Auth\LoginController@adminLogin');
-Route::post('/login/writer', 'Auth\LoginController@writerLogin');
-Route::post('/register/admin', 'Auth\RegisterController@createAdmin')->name('register.admin');
-Route::post('/register/writer', 'Auth\RegisterController@createWriter')->name('register.writer');
+Route::post('/login/professor', 'Auth\LoginController@professorLogin');
+Route::post('/login/student', 'Auth\LoginController@studentLogin');
+Route::post('/register/professor', 'Auth\RegisterController@createProfessor')->name('register.professor');
+Route::post('/register/student', 'Auth\RegisterController@createStudent')->name('register.student');
 
 Route::view('/home', 'home')->middleware('auth');
-Route::group(['middleware' => 'auth:admin'], function () {
-    Route::view('/admin', 'admin');
+Route::group(['middleware' => 'auth:professor'], function () {
+    Route::view('/professor', 'professor');
 });
 
-Route::group(['middleware' => 'auth:writer'], function () {
-    Route::view('/writer', 'writer');
+Route::group(['middleware' => 'auth:student'], function () {
+    Route::view('/student', 'student');
 });
