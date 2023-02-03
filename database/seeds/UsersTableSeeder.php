@@ -18,13 +18,11 @@ class UsersTableSeeder extends Seeder
                 'name' => 'admin',
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('admin0'),
-                'is_super' => true,
             ],
             [
                 'name' => 'admin1',
                 'email' => 'admin1@gmail.com',
                 'password' => Hash::make('admin1'),
-                'is_super' => true,
             ]
         ];
 
@@ -34,7 +32,6 @@ class UsersTableSeeder extends Seeder
                 'name' => $admin['name'],
                 'email' => $admin['email'],
                 'password' => $admin['password'],
-                'is_super' => $admin['is_super'],
             ]);
         }
     }

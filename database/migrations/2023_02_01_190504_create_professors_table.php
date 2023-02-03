@@ -19,9 +19,6 @@ class CreateProfessorsTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('email')->unique();
             $table->string('password')->nullable();
-            $table->string('phone_number')->nullable();
-            $table->boolean('is_professor')->default(false);
-            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

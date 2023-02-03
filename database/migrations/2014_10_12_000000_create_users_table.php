@@ -18,8 +18,6 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('phone_number')->nullable();
-            $table->boolean('is_super')->default(false);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

@@ -13,15 +13,11 @@ class Professor extends Authenticatable
     protected $guard = 'professor';
 
     protected $fillable = [
-        'name', 'avatar', 'email', 'password', 'phone_number', 'is_professor'
+        'name', 'avatar', 'email', 'password'
     ];
 
     protected $hidden = [
         'password', 'remember_token',
-    ];
-
-    protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
 
     public function student_groups()
