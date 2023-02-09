@@ -19,9 +19,9 @@ class CreateProfessorsTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('email')->unique();
             $table->string('password')->nullable();
+            $table->string('phone');
             $table->rememberToken();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

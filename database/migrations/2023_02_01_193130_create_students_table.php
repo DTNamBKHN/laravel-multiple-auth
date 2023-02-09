@@ -19,10 +19,10 @@ class CreateStudentsTable extends Migration
             $table->string('name');
             $table->string('avatar')->nullable();
             $table->string('email')->unique();
-            $table->string('password')->nullable();
+            $table->string('password');
+            $table->string('phone')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->softDeletes();
 
             $table->foreign('student_group_id')->references('id')->on('student_groups')->onDelete('cascade');
         });

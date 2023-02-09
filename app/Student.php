@@ -4,15 +4,14 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\SoftDeletes;
 class Student extends Authenticatable
 {
-    use SoftDeletes, Notifiable;
+    use Notifiable;
 
     protected $guard = 'student';
 
     protected $fillable = [
-        'name', 'student_group_id', 'avatar', 'email', 'password'
+        'name', 'student_group_id', 'avatar', 'email', 'password', 'phone'
     ];
 
     protected $hidden = [

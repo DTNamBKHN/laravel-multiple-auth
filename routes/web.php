@@ -1,5 +1,5 @@
 <?php
-Route::view('/', 'welcome');
+Route::view('/', 'app');
 Auth::routes();
 
 Route::get('/login/professor', 'Auth\LoginController@showProfessorLoginForm')->name('login.professor');
