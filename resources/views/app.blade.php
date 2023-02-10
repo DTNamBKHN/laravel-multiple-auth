@@ -7,6 +7,8 @@
   <title>StudentManagement</title>
   <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
   <link rel="stylesheet" href="{{ asset('css/vue-style.css') }}" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
   <script type="text/javascript">
     {{-- window.vuebnb_listing_model = "{!! addslashes(json_encode($model)) !!}" --}}
   </script>
