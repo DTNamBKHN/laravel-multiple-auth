@@ -42,14 +42,20 @@ class LoginController extends Controller
         $this->middleware('guest:student')->except('logout');
     }
 
+
+    public function showLoginForm()
+    {
+        return view('app', ['data' => []]);
+    }
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showProfessorLoginForm()
     {
-        return view('auth.login', [
-            'url' => Config::get('constants.guards.professor')
-        ]);
+        // return view('auth.login', [
+        //     'url' => Config::get('constants.guards.professor')
+        // ]);
+        return view('app', ['data' => []]);
     }
 
     /**
@@ -57,9 +63,7 @@ class LoginController extends Controller
      */
     public function showStudentLoginForm()
     {
-        return view('auth.login', [
-            'url' => Config::get('constants.guards.student')
-        ]);
+        return view('app', ['data' => []]);
     }
 
     /**
@@ -69,7 +73,7 @@ class LoginController extends Controller
     protected function validator(Request $request)
     {
         return $this->validate($request, [
-            'email'   => 'required|email',
+            'email' => 'required|email',
             'password' => 'required|min:6'
         ]);
     }
@@ -115,7 +119,7 @@ class LoginController extends Controller
      */
     public function studentLogin(Request $request)
     {
-        if ($this->guardLogin($request,Config::get('constants.guards.student'))) {
+        if ($this->guardLogin($request, Config::get('constants.guards.student'))) {
             return redirect()->intended('/student');
         }
 

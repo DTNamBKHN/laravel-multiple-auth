@@ -11,17 +11,20 @@ window.Vue = require('vue');
 import "core-js/fn/object/assign";
 import Vue from 'vue';
 import vuetify from '../../plugins/vuetify'
+import router from './router'
+import store from './store';
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue'));
-import Test from '../components/Test.vue';
+import App from '../components/App.vue'
 
 const app = new Vue({
   vuetify,
-  render: h => h(Test),
+  router,
+  store,
+  render: h => h(App),
   el: '#app',
 });
