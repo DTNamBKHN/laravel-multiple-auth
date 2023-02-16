@@ -3,11 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class GraduationProject extends Model
 {
-    use SoftDeletes;
 
     protected $fillable = [
         'project_name', 'project_detail', 'professor_id', 'student_id', 'semester'

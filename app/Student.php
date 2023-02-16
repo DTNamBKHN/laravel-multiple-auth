@@ -11,7 +11,7 @@ class Student extends Authenticatable
     protected $guard = 'student';
 
     protected $fillable = [
-        'name', 'student_group_id', 'avatar', 'email', 'password', 'phone'
+        'name', 'student_group_id', 'avatar', 'email', 'password'
     ];
 
     protected $hidden = [

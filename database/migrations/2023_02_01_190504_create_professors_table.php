@@ -18,8 +18,8 @@ class CreateProfessorsTable extends Migration
             $table->string('name');
             $table->string('avatar')->nullable();
             $table->string('email')->unique();
-            $table->string('password')->nullable();
-            $table->string('phone');
+            $table->string('password');
+            $table->boolean('is_professor')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });

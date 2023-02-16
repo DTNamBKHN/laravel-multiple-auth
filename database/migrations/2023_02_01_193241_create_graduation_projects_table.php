@@ -21,7 +21,6 @@ class CreateGraduationProjectsTable extends Migration
             $table->string('project_detail');
             $table->integer('semester');
             $table->timestamps();
-            $table->softDeletes();
 
             $table->foreign('professor_id')->references('id')->on('professors')->onDelete('cascade');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
