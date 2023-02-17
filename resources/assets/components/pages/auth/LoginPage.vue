@@ -47,18 +47,18 @@
               >Log In</v-btn
             >
 
-            <div class="mt-5">
+            <!-- <div class="mt-5">
               <router-link to="/auth/forgot-password">
                 Forgot password?
               </router-link>
-            </div>
+            </div> -->
           </v-form>
         </v-card-text>
       </v-card>
 
-      <div class="text-center mt-6">
+      <div class="text-center mt-6" v-if="param !== ''">
         Don't have an account?
-        <router-link to="/auth/signup" class="font-weight-bold">
+        <router-link :to="`/register${param}`" class="font-weight-bold">
           Create one here
         </router-link>
       </div>
@@ -67,17 +67,15 @@
 </template>
 
 <script>
-/*
-|---------------------------------------------------------------------
-| Log In Page Component
-|---------------------------------------------------------------------
-|
-| Log in template for user authentication into the application
-|
-*/
+import axios from 'axios';
+axios.defaults.headers.common = {
+  'X-Requested-With': 'XMLHttpRequest',
+  'X-CSRF-TOKEN': window.csrf_token
+};
 export default {
   data() {
     return {
+      param: this.$route.fullPath.slice(6),
       // log in buttons
       isLoading: false,
       isSignInDisabled: false,
@@ -103,15 +101,28 @@ export default {
   methods: {
     submit() {
       if (this.$refs.form.validate()) {
+        this.resetErrors();
         this.isLoading = true;
         this.isSignInDisabled = true;
         this.signIn(this.email, this.password);
       }
     },
     signIn(email, password) {
-      this.$router.push("/");
+      axios.post(`/api/login${this.param}`, {
+        email: email,
+        password: password
+      })
+      .then(response => {
+        console.log('response: ', response.data.success)
+        this.$router.push('/')
+      })
+      .catch(error => {
+        this.error = true;
+        this.errorMessages = "Wrong email or password";
+        this.isLoading = false;
+        this.isSignInDisabled = false;
+      })
     },
-    signInProvider(provider) {},
     resetErrors() {
       this.error = false;
       this.errorMessages = "";

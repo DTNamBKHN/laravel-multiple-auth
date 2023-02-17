@@ -42,8 +42,18 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'passport',
             'provider' => 'users',
+        ],
+
+        'professor-api' => [
+            'driver' => 'passport',
+            'provider' => 'professors',
+        ],
+
+        'student-api' => [
+            'driver' => 'passport',
+            'provider' => 'students',
         ],
 
         'professor' => [

@@ -11,6 +11,7 @@
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
   <script type="text/javascript">
     window.server_data = "{!! addslashes(json_encode($data)) !!}"
+    window.csrf_token = "{{ csrf_token() }}"
   </script>
 </head>
 <body>

@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -96,6 +96,14 @@ class LoginController extends Controller
         );
     }
 
+    public function login(Request $request)
+    {
+        if ($this->guardLogin($request, 'web')) {
+            return response()->json(['success' => 'Successfully logged in']);
+        }
+        return response()->json(['error' => 'Wrong information'], 401);
+    }
+
     /**
      * @param Request $request
      *
@@ -104,13 +112,11 @@ class LoginController extends Controller
     public function professorLogin(Request $request)
     {
         if ($this->guardLogin($request, Config::get('constants.guards.professor'))) {
-            return redirect()->intended('/professor');
+            return response()->json(['success' => 'Successfully logged in']);
         }
 
-        return back()->withInput($request->only('email', 'remember'));
+        return response()->json(['error' => 'Wrong information'], 401);
     }
-
-
 
     /**
      * @param Request $request
@@ -120,9 +126,9 @@ class LoginController extends Controller
     public function studentLogin(Request $request)
     {
         if ($this->guardLogin($request, Config::get('constants.guards.student'))) {
-            return redirect()->intended('/student');
+            return response()->json(['success' => 'Successfully logged in']);
         }
 
-        return back()->withInput($request->only('email', 'remember'));
+        return response()->json(['error' => 'Wrong information'], 401);
     }
 }
