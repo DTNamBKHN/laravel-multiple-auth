@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Professor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfessorController extends Controller
 {
@@ -14,7 +15,9 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        //
+        $auth = Auth::guard('professor')->check();
+        // dd($auth);
+        return view('app', ['data' => $auth]);
     }
 
     /**

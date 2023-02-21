@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
@@ -99,7 +100,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         if ($this->guardLogin($request, 'web')) {
-            return response()->json(['success' => 'Successfully logged in']);
+            return response()->json(['success' => Auth::guard('web')->check()]);
         }
         return response()->json(['error' => 'Wrong information'], 401);
     }
@@ -112,10 +113,10 @@ class LoginController extends Controller
     public function professorLogin(Request $request)
     {
         if ($this->guardLogin($request, Config::get('constants.guards.professor'))) {
-            return response()->json(['success' => 'Successfully logged in']);
+            return redirect()->intended('/professor');
         }
 
-        return response()->json(['error' => 'Wrong information'], 401);
+        return back()->withInput($request->only('email', 'remember'));
     }
 
     /**
